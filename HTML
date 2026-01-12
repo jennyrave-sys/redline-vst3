@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jennyrave redline | Particle Decay Saturator</title>
+    <meta name="description" content="A one-knob distortion module based on the Einstein Field Equations and 90s hardware failure. Professional VST3 saturation for industrial and techno production.">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="keywords" content="vst3, distortion, saturator, techno, industrial, jennyrave, redline, particle decay, music production, plugin">
+    <meta name="author" content="jennyrave">
+    <link rel="canonical" href="https://github.com/jennyrave-sys/redline-vst3">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-red: #ff4444;
+            --dark-bg: #0a0a0a;
+            --panel-bg: #161616;
+            --text-main: #e0e0e0;
+            --text-dim: #666;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .font-mono {
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        .glitch-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .glitch {
+            position: relative;
+            color: #fff;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark-bg);
+        }
+
+        .glitch::before {
+            left: 2px;
+            text-shadow: -1px 0 #ff00c1;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+
+        .glitch::after {
+            left: -2px;
+            text-shadow: -1px 0 #00fff9;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim2 5s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% { clip: rect(13px, 9999px, 81px, 0); }
+            5% { clip: rect(89px, 9999px, 93px, 0); }
+            10% { clip: rect(2px, 9999px, 6px, 0); }
+            15% { clip: rect(66px, 9999px, 2px, 0); }
+            100% { clip: rect(1px, 9999px, 1px, 0); }
+        }
+
+        @keyframes glitch-anim2 {
+            0% { clip: rect(65px, 9999px, 100px, 0); }
+            5% { clip: rect(5px, 9999px, 34px, 0); }
+            10% { clip: rect(20px, 9999px, 8px, 0); }
+            100% { clip: rect(1px, 9999px, 1px, 0); }
+        }
+
+        .text-redline {
+            color: var(--neon-red);
+            text-shadow: 0 0 10px rgba(255, 68, 68, 0.4);
+        }
+
+        .btn-industrial {
+            display: inline-block;
+            background: transparent;
+            border: 2px solid var(--neon-red);
+            color: var(--neon-red);
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .btn-industrial:hover {
+            background: var(--neon-red);
+            color: #000;
+            box-shadow: 0 0 20px rgba(255, 68, 68, 0.6);
+        }
+
+        .formula {
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <nav class="w-full py-4 md:py-6 px-4 md:px-8 flex justify-between items-center border-b border-white/10 bg-black/50 backdrop-blur-md fixed top-0 z-50">
+        <div class="flex flex-col md:flex-row md:items-center md:gap-2">
+            <span class="text-sm md:text-xl font-black text-redline leading-none">JENNYRAVE</span>
+            <span class="text-sm md:text-xl font-black text-redline leading-none">REDLINE</span>
+        </div>
+        <div class="flex gap-4 md:gap-8 text-[10px] md:text-sm font-mono text-gray-400">
+            <a href="#concept" class="hover:text-white transition-colors">ORIGIN STORY</a>
+            <a href="#features" class="hidden sm:block hover:text-white transition-colors">SPECS</a>
+            <a href="#download" class="hover:text-white transition-colors">ACQUIRE</a>
+        </div>
+    </nav>
+
+    <header class="relative pt-24 pb-16 md:pt-32 md:pb-24 px-6 flex flex-col items-center text-center">
+        <div class="relative w-full max-w-xs md:max-w-md mx-auto mb-8">
+            <img src="https://raw.githubusercontent.com/jennyrave-sys/redline-vst3/main/jennyrave_redline.jpg" 
+                 alt="jennyrave redline VST Interface" 
+                 class="w-full h-auto rounded-lg shadow-2xl border border-white/10 mx-auto relative z-10">
+            <div class="absolute -inset-4 bg-red-600/20 blur-3xl -z-10 opacity-50"></div>
+        </div>
+
+        <div class="glitch-wrapper mb-4">
+            <h1 class="glitch text-3xl md:text-6xl" data-text="PARTICLE DECAY SATURATOR">
+                PARTICLE DECAY<br><span class="text-redline">SATURATOR</span>
+            </h1>
+        </div>
+
+        <p class="text-gray-400 max-w-2xl text-base md:text-xl font-light leading-relaxed mb-8">
+            A distortion module recovered from the outskirts of the technological district. 
+            Utilizing the Field Equations of spacetime curvature, it reintroduces the essential hardware dirt 
+            missing from modern digital production while prioritizing nuance over total destruction.
+        </p>
+
+        <a href="https://github.com/jennyrave-sys/redline-vst3/raw/refs/heads/main/jennyrave%20redline.vst3.zip" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           class="btn-industrial px-6 py-3 md:px-8 md:py-4 text-base md:text-lg font-bold tracking-widest uppercase">
+            INITIALIZE VST3 DOWNLOAD
+        </a>
+    </header>
+
+    <section id="concept" class="py-16 md:py-20 border-t border-white/5 bg-neutral-900/50">
+        <div class="container mx-auto px-6 max-w-4xl text-center">
+            <div>
+                <div class="flex items-center justify-center gap-2 mb-4">
+                    <div class="w-2 h-2 bg-red-500"></div>
+                    <h2 class="font-mono text-xs md:text-sm text-gray-500 tracking-widest uppercase">Origin Story // [REDACTED]</h2>
+                </div>
+                <h3 class="text-2xl md:text-4xl font-bold mb-6">The Sound of Reality Tearing.</h3>
+                <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-6">
+                    Modern production is too clean. It lacks the visceral weight of high-voltage accidents and the unpredictable "dirt" of failing hardware. That missing element is why <strong>The Redline</strong> was recovered. Found hacked together from scavenged parts, mismatched capacitors, and ancient op-amps, it wasn't designed for full-on sonic destruction, but to accurately emulate the gritty reality of analog imperfection. It infuses the layer of "hardware dirt" that digital precision strips away, restoring the sterile nature of modern audio.
+                </p>
+                <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-8">
+                    When you rotate the central control, you are not simply increasing gain. You are manually driving the Stress-Energy Tensor (T<sub>μν</sub>) beyond the circuit's event horizon. As you turn the knob clockwise, the equation becomes unbalanced. The hardware tries to compensate by warping the geometry of spacetime (G<sub>μν</sub>) around the signal, causing the waveform to buckle under its own gravitational mass. Turn it down, and the fabric heals. Push it to the Redline, and you trigger a localized collapse. Warning: We are not legally responsible if this unit actually tears a hole in your studio's reality (see GPLv3).
+                </p>
+                
+                <div class="bg-black/40 border border-white/10 p-4 md:p-6 rounded text-center inline-block">
+                    <span class="formula text-xl md:text-3xl text-white">
+                        G<sub>μν</sub> + Λg<sub>μν</sub> = 8πG/c<sup>4</sup> T<sub>μν</sub>
+                    </span>
+                    <p class="font-mono text-[10px] md:text-xs text-red-500 mt-2 uppercase">Field Equation: Spacetime Curvature</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="py-16 md:py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-center text-2xl md:text-3xl font-bold mb-12 md:mb-16">HARDWARE SPECIFICATIONS</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-neutral-900 border border-white/5 p-6 hover:border-red-500/50 transition-colors group">
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-black border border-white/10 flex items-center justify-center mb-4 text-xl md:text-2xl group-hover:text-red-500 transition-colors">
+                        💾
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">56k Chip Emulation</h3>
+                    <p class="text-gray-500 text-sm">
+                        24-bit fixed-point quantization logic that recreates the specific rounding errors and "glassy" harmonic distortion of 90s hardware.
+                    </p>
+                </div>
+
+                <div class="bg-neutral-900 border border-white/5 p-6 hover:border-red-500/50 transition-colors group">
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-black border border-white/10 flex items-center justify-center mb-4 text-xl md:text-2xl group-hover:text-red-500 transition-colors">
+                        🪐
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Cosmological Drift</h3>
+                    <p class="text-gray-500 text-sm">
+                        An asymmetrical LFO that modulates the DC bias drift based on the Cosmological Constant (Λ), generating thick even-order harmonics.
+                    </p>
+                </div>
+
+                <div class="bg-neutral-900 border border-white/5 p-6 hover:border-red-500/50 transition-colors group">
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-black border border-white/10 flex items-center justify-center mb-4 text-xl md:text-2xl group-hover:text-red-500 transition-colors">
+                        📉
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Fabric Tear Waveshaping</h3>
+                    <p class="text-gray-500 text-sm">
+                        Dynamic Pade approximation curves that warp (G<sub>μν</sub>) in real-time based on input energy intensity (T<sub>μν</sub>), collapsing signal integrity.
+                    </p>
+                </div>
+
+                <div class="bg-neutral-900 border border-white/5 p-6 hover:border-red-500/50 transition-colors group">
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-black border border-white/10 flex items-center justify-center mb-4 text-xl md:text-2xl group-hover:text-red-500 transition-colors">
+                        🐌
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Slew Rate Limiting</h3>
+                    <p class="text-gray-500 text-sm">
+                        Branchless conditional smoothing that models the sluggish voltage response of ancient op-amps, rounding off square waves into an industrial "growl."
+                    </p>
+                </div>
+
+                <div class="bg-neutral-900 border border-white/5 p-6 hover:border-red-500/50 transition-colors group">
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-black border border-white/10 flex items-center justify-center mb-4 text-xl md:text-2xl group-hover:text-red-500 transition-colors">
+                        🧠
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Hysteresis Memory</h3>
+                    <p class="text-gray-500 text-sm">
+                        A state-memory feedback loop that allows the circuit to "remember" previous transients, adding a breathing, organic texture to distortion.
+                    </p>
+                </div>
+
+                <div class="bg-neutral-900 border border-white/5 p-6 hover:border-red-500/50 transition-colors group">
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-black border border-white/10 flex items-center justify-center mb-4 text-xl md:text-2xl group-hover:text-red-500 transition-colors">
+                        🎚️
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Pre-Emphasis Tilt</h3>
+                    <p class="text-gray-500 text-sm">
+                        A 35Hz high-pass and a +2dB shelf at 3kHz modeled on 90s console inputs, ensuring the saturation "bites" into the frequencies that matter.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="download" class="py-20 md:py-24 relative bg-red-900/10 border-t border-red-500/20">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-6xl font-black mb-8 uppercase text-redline">Initiate Sequence</h2>
+            <p class="text-lg md:text-xl text-gray-400 mb-12 max-w-xl mx-auto">
+                Ready to reintroduce the dirt? <br>
+                Available for Windows (VST3).
+            </p>
+            
+            <div class="flex flex-col md:flex-row justify-center gap-6 mb-16">
+                <a href="https://github.com/jennyrave-sys/redline-vst3/raw/refs/heads/main/jennyrave%20redline.vst3.zip" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="btn-industrial px-8 py-4 text-lg font-bold hover:bg-white hover:text-black shadow-[0_0_30px_rgba(255,0,0,0.4)]">
+                    DOWNLOAD VST3 (WIN)
+                </a>
+            </div>
+
+            <div class="max-w-4xl mx-auto border border-white/10 bg-black/40 p-6 md:p-8 rounded-lg text-left">
+                <h3 class="font-mono text-xs md:text-sm text-red-500 tracking-[0.2em] md:tracking-[0.3em] uppercase mb-8 border-b border-white/5 pb-4">Deployment Instructions // V.1.0.0</h3>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="space-y-2 md:space-y-3">
+                        <div class="text-red-500 font-bold font-mono text-[10px]">01 // ACQUIRE</div>
+                        <a href="https://github.com/jennyrave-sys/redline-vst3/raw/refs/heads/main/jennyrave%20redline.vst3.zip" target="_blank" rel="noopener noreferrer" class="block group">
+                            <h4 class="font-bold text-white text-sm uppercase group-hover:text-red-500 transition-colors underline decoration-red-500/30 underline-offset-4">Acquire & Stabilize</h4>
+                        </a>
+                        <p class="text-gray-500 text-xs leading-relaxed">Secure the archived package. Right-click the folder and select "Extract All" to stabilize the files.</p>
+                    </div>
+                    
+                    <div class="space-y-2 md:space-y-3">
+                        <div class="text-red-500 font-bold font-mono text-[10px]">02 // ISOLATE</div>
+                        <h4 class="font-bold text-white text-sm uppercase">Isolate the Module</h4>
+                        <p class="text-gray-500 text-xs leading-relaxed">Locate the primary binary <span class="text-gray-300">jennyrave redline.vst3</span> within the decompressed sector.</p>
+                    </div>
+
+                    <div class="space-y-2 md:space-y-3">
+                        <div class="text-red-500 font-bold font-mono text-[10px]">03 // TRANSFER</div>
+                        <h4 class="font-bold text-white text-sm uppercase">Integrate with Host</h4>
+                        <p class="text-gray-500 text-xs leading-relaxed break-all">Manually transfer the file into your system's VST3 directory: <br><span class="text-gray-400 font-mono">C:\Program Files\Common Files\VST3\</span></p>
+                    </div>
+
+                    <div class="space-y-2 md:space-y-3">
+                        <div class="text-red-500 font-bold font-mono text-[10px]">04 // INITIALIZE</div>
+                        <h4 class="font-bold text-white text-sm uppercase">Initialize Field</h4>
+                        <p class="text-gray-500 text-xs leading-relaxed">Boot your workstation and run a deep scan to initialize the field equations for the new module.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="mt-12 font-mono text-[10px] text-gray-600">
+                VERSION 1.0.0 // BUILD 2026.01 // JENNYRAVE
+            </p>
+        </div>
+    </section>
+
+    <footer class="bg-black py-12 md:py-16 border-t border-white/10 text-center flex flex-col items-center">
+        <div class="opacity-50 hover:opacity-100 transition-opacity duration-300 flex justify-center gap-2 mb-6">
+            <span class="font-black text-redline text-sm uppercase">jennyrave</span>
+            <span class="font-black text-redline text-sm uppercase">redline</span>
+        </div>
+        <p class="text-gray-500 text-[10px] md:text-xs tracking-widest mb-10 uppercase">2026 // DO NOT STARE DIRECTLY INTO THE SUN.</p>
+        
+        <div class="pt-8 border-t border-white/5 w-1/2 md:w-1/4">
+            <p class="text-gray-700 text-[10px] md:text-[11px] font-mono uppercase tracking-[0.3em] md:tracking-[0.5em] opacity-80">GPLv3</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        console.log("%c JENNYRAVE REDLINE \n SYSTEM ONLINE ", "background: #000; color: #ff4444; font-size: 20px; font-weight: bold; padding: 10px;");
+    </script>
+</body>
+</html>
